@@ -1,0 +1,27 @@
+{
+  "name": "alog",
+  "version": "1.0.0",
+  "description": "\"# content-mangement\"",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodegroundProject/content-mangement.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodegroundProject/content-mangement/issues"
+  },
+  "homepage": "https://github.com/CodegroundProject/content-mangement#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.3.4",
+    "nodemon": "^2.0.16"
+  }
+}
