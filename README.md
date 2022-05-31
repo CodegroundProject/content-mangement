@@ -1,13 +1,16 @@
 # content-mangement"
 
-don't waste your time 😂
+get random challenge by categorie
+POST http://localhost:5000/api/challenges body: { "categorie": "data-structures" }
 
+don't waste your time 😂
 {
-"name": "Sort an Array",
-"level": "meduim",
+"name": "Sort an Array 2",
+"level": "hard",
 "language": "javascript",
 "description": "#Sort an array with javascript",
 "func_name": "sortArray",
+"categorie": "data-structures",
 "inputs": [
 {
 "input_name": "nums",

@@ -4,11 +4,11 @@ const Test = require("../models/Test")
 const Input = require("../models/Input")
 
 const createChallenge = async (challenge) => {
-  const { name, level, language, description, func_name, inputs, output, tests }
+  const { name, level, language, description, func_name, categorie, inputs, output, tests }
     = challenge
   try {
     const newChallenge = new Challenge({
-      name, level, language, description, func_name, output
+      name, level, language, description, func_name, output, categorie,
     })
     const success = await newChallenge.save()
 
@@ -129,4 +129,30 @@ const getChallengeTestsById = async (challengeId) => {
   }
 }
 
-module.exports = { createChallenge, getChallengeById, getChallengeTestsById }
+const getChallengeByCategorie = async (categorie) => {
+  try {
+    const { categorie: targetCategorie } = categorie;
+    const challenges = await Challenge.find({ categorie: targetCategorie });
+    const index = Math.floor(Math.random() * challenges.length)
+    const inputs = await Input.find({ challenge: challenges[index]._id }, '-_id -challenge -__v')
+    const tests = await Test.find({ challenge: challenges[index]._id }, '-challenge -_id -__v')
+
+    return {
+      code: 200,
+      data: {
+        challenge: { challenge: challenges[index], inputs, tests }
+      }
+    }
+  } catch (e) {
+    console.error(e);
+    return {
+      code: 500,
+      data: {
+        success: false,
+        msg: "server error"
+      }
+    }
+  }
+}
+
+module.exports = { createChallenge, getChallengeById, getChallengeTestsById, getChallengeByCategorie }

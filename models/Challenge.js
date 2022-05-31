@@ -7,6 +7,9 @@ const challengeSchema = new mongoose.Schema({
   level: {
     type: String, required: true,
   },
+  categorie: {
+    type: String, required: true,
+  },
   language: {
     type: String,
     required: true,
