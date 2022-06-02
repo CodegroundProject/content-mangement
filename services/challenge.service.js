@@ -3,6 +3,16 @@ const Challenge = require("../models/Challenge")
 const Test = require("../models/Test")
 const Input = require("../models/Input")
 
+const getAll = async () => {
+  return {
+    code: 200,
+    data: {
+      success: true,
+      data: await Challenge.find({})
+    }
+  }
+}
+
 const createChallenge = async (challenge) => {
   const { name, level, language, description, func_name, categorie, inputs, output, tests }
     = challenge
@@ -109,12 +119,13 @@ const getChallengeTestsById = async (challengeId) => {
         msg: "challenge doesn't exist"
       }
     }
-    const tests = await Test.find({ challenge: challengeId }, '-challenge -_id -__v')
+    const tests = await Test.find({ challenge: challengeId }, '-__v')
     return {
       code: 200,
       data: {
         success: true,
-        tests
+        func_name: challenge.func_name,
+        tests,
       }
     }
   } catch (e) {
@@ -155,4 +166,4 @@ const getChallengeByCategorie = async (categorie) => {
   }
 }
 
-module.exports = { createChallenge, getChallengeById, getChallengeTestsById, getChallengeByCategorie }
+module.exports = { createChallenge, getChallengeById, getChallengeTestsById, getChallengeByCategorie, getAll }

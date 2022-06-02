@@ -1,5 +1,10 @@
 const challengeService = require("../services/challenge.service")
 
+
+const getAll = async (req, res) => {
+  const { code, data } = await challengeService.getAll();
+  return res.status(code).json(data);
+}
 const createChallenge = async (req, res) => {
   const { code, data } = await challengeService.createChallenge(req.body);
   return res.status(code).json(data);
@@ -19,4 +24,4 @@ const getChallengeByCategorie = async (req, res) => {
   return res.status(code).json(data);
 }
 
-module.exports = { createChallenge, getChallengeById, getChallengeTestsById, getChallengeByCategorie }
+module.exports = { createChallenge, getChallengeById, getChallengeTestsById, getChallengeByCategorie, getAll }
